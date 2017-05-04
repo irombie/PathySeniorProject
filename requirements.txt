@@ -1,0 +1,4 @@
+--upgrade google-cloud
+unidecode
+mysql-connector==2.1.4
+oauth2
