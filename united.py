@@ -9,11 +9,11 @@ from unidecode import unidecode
 from google.cloud import translate
 from google.cloud import language
 # Twitter API Access Information
-CONSUMER_KEY = 't7esrWcJIyHoV7QtQChdXGsKF'
-CONSUMER_SECRET = 'jdTVyyBZpuQVgX1Q7ZBcciWn2Vmqv6IL72fjhOpNVkF6PYzq7J'
-key = '725982882704056320-AEjRTxLfl9U9X7KR06Ob5T5baEXWyee'
-secret = 'lFnFtbj842vKxfAgRl8HxTcXu1N7YSCAPeg90csV0ENuX'
-token = 'LQiWv0FTmQEJRVbun8Rqld6WZCIrGUyO'
+CONSUMER_KEY = '<twitter consumer key>'
+CONSUMER_SECRET = '<twitter consumer secret>'
+key = '<twitter key>'
+secret = "<twitter secret>"
+token = '<pipeline caller api key>'
 tool = 'normalize'
 
 # Twitter Search API
@@ -66,22 +66,21 @@ def main(argv):
     # Gets tweets from the specifed hashtag in json format
     # Detailed informaiton: https://dev.twitter.com/rest/reference/get/search/tweets
     hashtag = ''
-    lang = ''
+    lang = 'tr'
 
     try:
-        opts, args = getopt.getopt(argv, "uh:l:", ["hashtag=", "language="])
+        opts, args = getopt.getopt(argv, "uh:", ["hashtag="])
     except getopt.GetoptError:
-        print('hashtag_miner.py -h <hashtag> -l <language>')
+        print('united.py -h <hashtag>')
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-u':
-            print('hashtag_miner.py -h <hashtag> -l <language>')
-            sys.exit() d
+            print('united.py -h <hashtag>')
+            sys.exit() 
         elif opt in ("-h", "--hashtag"):
             hashtag = '#' + arg
-        elif opt in ("-l", "--language"):
-            lang = arg
+        
 
     query = 'q=' + urllib.quote_plus(hashtag) + '&lang=' + lang
     search_url = SEARCH_API_URL + query
