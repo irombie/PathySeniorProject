@@ -10,4 +10,4 @@ Sentiment analysis in Turkish had not been studied in depth at the time and it w
 
 Let us go over the pipeline of Pathy with a picture. 
 
-![Alt text](pipeline.png?raw=true "Title")
+![Alt text](pipeline.pdf?raw=true "Title")
