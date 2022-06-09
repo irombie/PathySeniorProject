@@ -17,12 +17,12 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "ut:", ["table="])
     except getopt.GetoptError:
-        print 'normalization.py -t <table_name>'
+        print('normalization.py -t <table_name>')
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-u':
-            print 'normalization.py -t <table_name>'
+            print('normalization.py -t <table_name>')
             sys.exit()
         elif opt in ("-t", "--table"):
             table_name = arg
@@ -46,7 +46,7 @@ def main(argv):
     for tweet in tweets:
         caller = pipeline_caller.PipelineCaller(tool, unidecode(tweet['tweet_text']), token)
         normalized_text = caller.call()
-        print normalized_text
+        print(normalized_text)
         tweet['normalized_text'] = normalized_text
         db.update_tweet(table_name, tweet)
 

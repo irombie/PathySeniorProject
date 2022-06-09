@@ -13,21 +13,17 @@ def translate_text(text, model=translate.NMT):
     return result
 
 
-#print translate_text('hayat sana limon verirse limonata yap')
-# api_key='AIzaSyBic5xtcVtZ9rFnAyRMfPISQz_GebwDvBg'
-
-
 def main(argv):
     table_name = ''
     try:
         opts, args = getopt.getopt(argv, "ut:", ["table="])
     except getopt.GetoptError:
-        print 'translate.py -t <table_name>'
+        print('translate.py -t <table_name>')
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-u':
-            print 'translate.py -t <table_name>'
+            print('translate.py -t <table_name>')
             sys.exit()
         elif opt in ("-t", "--table"):
             table_name = arg
@@ -38,7 +34,7 @@ def main(argv):
     print('Translation begins...')
     for tweet in tweets:
         translated_text = translate_text(unidecode(tweet['normalized_text']))
-        print translated_text
+        print(translated_text)
         tweet['translated_text'] = translated_text['translatedText']
         db.update_tweet(table_name, tweet)
 

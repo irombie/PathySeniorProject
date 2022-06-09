@@ -36,12 +36,12 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "uh:l:", ["hashtag=", "language="])
     except getopt.GetoptError:
-        print 'hashtag_miner.py -h <hashtag> -l <language>'
+        print('hashtag_miner.py -h <hashtag> -l <language>')
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-u':
-            print 'hashtag_miner.py -h <hashtag> -l <language>'
+            print('hashtag_miner.py -h <hashtag> -l <language>')
             sys.exit()
         elif opt in ("-h", "--hashtag"):
             hashtag = '#' + arg
@@ -72,23 +72,23 @@ def main(argv):
     json_data = json.loads(tweets_json)
  
     for cur_tweet in json_data['statuses']:
-    	temp=cur_tweet['created_at'][4:]
-    	cre_time=temp.partition('+')[0][:-1]
-    	datetime_object = datetime.strptime(cre_time, '%b %d %H:%M:%S')
-    	if(cur_tweet['place'] is None):
-    		tweet = {'_id': cur_tweet['id'], 'tweet_text': cur_tweet['text'], 'country': 'none', 'fav':cur_tweet['favorite_count'],'rt':cur_tweet['retweet_count'],'time':datetime_object}
-    	else:
-    		tweet = {'_id': cur_tweet['id'], 'tweet_text': cur_tweet['text'], 'country': cur_tweet['place']['country'], 'fav':cur_tweet['favorite_count'],'rt':cur_tweet['retweet_count'],'time':datetime_object}
-    		
+        temp=cur_tweet['created_at'][4:]
+        cre_time=temp.partition('+')[0][:-1]   
+        datetime_object = datetime.strptime(cre_time, '%b %d %H:%M:%S')
+        if(cur_tweet['place'] is None):
+            tweet = {'_id': cur_tweet['id'], 'tweet_text': cur_tweet['text'], 'country': 'none', 'fav':cur_tweet['favorite_count'],'rt':cur_tweet['retweet_count'],'time':datetime_object}
+        else:
+            tweet = {'_id': cur_tweet['id'], 'tweet_text': cur_tweet['text'], 'country': cur_tweet['place']['country'], 'fav':cur_tweet['favorite_count'],'rt':cur_tweet['retweet_count'],'time':datetime_object}
+            
         print(tweet)
         db.insert_into_tweets_table(table_name, tweet)
     
     c_dic =db.count_country(table_name)
-    print c_dic
+    print(c_dic)
     f=db.get_max_fav(table_name)
-    print f
+    print(f)
     r=db.get_max_rt(table_name)
-    print r
+    print(r)
     
 
 

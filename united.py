@@ -59,13 +59,7 @@ def print_result(annotations):
         print('Sentence {} has a sentiment score of {}'.format(
             index, sentence_sentiment))
 
-    print('Overall Sentiment: score of {} with magnitude of {}'.format(
-        score, magnitude))
-    return 0
 
-    print('Sentiment: score of {} with magnitude of {}'.format(
-        score, magnitude))
-    return 0
 
 
 def main(argv):
@@ -77,13 +71,13 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "uh:l:", ["hashtag=", "language="])
     except getopt.GetoptError:
-        print 'hashtag_miner.py -h <hashtag> -l <language>'
+        print('hashtag_miner.py -h <hashtag> -l <language>')
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-u':
-            print 'hashtag_miner.py -h <hashtag> -l <language>'
-            sys.exit()
+            print('hashtag_miner.py -h <hashtag> -l <language>')
+            sys.exit() d
         elif opt in ("-h", "--hashtag"):
             hashtag = '#' + arg
         elif opt in ("-l", "--language"):
@@ -101,15 +95,15 @@ def main(argv):
         row = tweets[i]
         caller = pipeline_caller.PipelineCaller(tool, unidecode(row['tweet_text']), token)
         normalized_text = caller.call()
-        print row['tweet_text']
+        print(row['tweet_text'])
         row['tweet_text']=normalized_text
-        print normalized_text
+        print(normalized_text)
 
     for row in tweets:
         str=translate_text(row['tweet_text'])
         trans_text=str['translatedText']
         row['tweet_text']=trans_text
-	#print row['tweet_text']
+
 
     f=open('trans_res.txt','w')
     for row in tweets:
