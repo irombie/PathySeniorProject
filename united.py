@@ -4,7 +4,7 @@ import json
 import oauth2
 import sys
 import getopt
-import pipeline_caller
+import backend_files.pipeline_caller as pipeline_caller
 from unidecode import unidecode
 from google.cloud import translate
 from google.cloud import language

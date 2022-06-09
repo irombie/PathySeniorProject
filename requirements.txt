@@ -1,4 +1,7 @@
---upgrade google-cloud
+getopt
 unidecode
-mysql-connector==2.1.4
+urllib
 oauth2
+sys
+json
+google.cloud
